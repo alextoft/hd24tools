@@ -46,9 +46,9 @@ WINEXT=.exe
 endif
 
 ifeq ($(BUILD_ARCH), Darwin)
-PLATFORM=OSX10.4
-CFLAGS=-no-cpp-precomp -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk
-CXXFLAGS=-no-cpp-precomp -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk
+PLATFORM=OSX12.5
+CFLAGS=-no-cpp-precomp -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/ 
+CXXFLAGS=-no-cpp-precomp -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/
 CC=g++ $(DEBUGGING) $(CXXFLAGS) -Wall -DDARWIN -DRELEASENUM=$(RELEASENUM) -DLIBFILE_SNDFILE=\"libsndfile.1.dylib\" -DLIBFILE_PORTAUDIO=\"libportaudio.dylib\" -DLIBFILE_JACK=\"libjack.dylib\" -DDEFAULTLIBPATH=\"/usr/lib/:/usr/local/lib/:/lib/\"
 LIBDIRS=-L/usr/local/lib -Lsrc/lib/ -L/sw/lib/
 INCLUDEDIRS=-I /usr/local/include -I /sw/include -I src/frontend -I src/lib -I src/backend  -I setup
@@ -296,7 +296,7 @@ createinstallerpackage_linux:
 	mv setup src/installer
 	mv setup.bck setup
 
-OSX10.4_installer: hd24connect$(WINEXT) hd24hexview$(WINEXT) $(FLFILECHOOSER) createinstallerpackage_mac
+OSX12.5_installer: hd24connect$(WINEXT) hd24hexview$(WINEXT) $(FLFILECHOOSER) createinstallerpackage_mac
 createinstallerpackage_mac:
 #	$(CC) $(CCARGS) $(SRCDIR)installer/setup.cpp $(FLFILECHOOSER) $(SRCDIR)installer/ui_license.o $(SRCDIR)installer/ui_welcome.o  $(SRCDIR)installer/ui_instdir.o $(SRCDIR)installer/ui_ready.o -o $(SRCDIR)installer/setup$(WINEXT) $(INCLUDEDIRS) $(LIBDIRS) $(UILIBS)
 #	fltk-config --post $(SRCDIR)installer/setup$(WINEXT)
